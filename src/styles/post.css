@@ -1,3 +1,4 @@
+
 .miniMode {
     padding: 1rem;
     margin: 0 25%;
@@ -9,6 +10,8 @@
 
 .newPost {
     margin: 0 25%;
+    display: block;
+    text-align: center;
 }
 
 .newPost__input {
