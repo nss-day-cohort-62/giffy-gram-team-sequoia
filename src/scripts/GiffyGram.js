@@ -15,7 +15,8 @@ export const GiffyGram = () => {
         <button class="notification__count">0</button>
     </div>
     <div class="navigation__logout">
-        <button name="tempLogoutButton" class="navigation__logout">Logout</button>
+        <button name="logoutButton" class="navigation__logout">Logout</button>
+
     </div>
     </header>
 

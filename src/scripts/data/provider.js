@@ -39,7 +39,21 @@ export const fetchPosts = () => {
         )
 }
 
-
 export const getPosts = () => {
     return applicationState.posts.map(post => ({...post}))
+}
+
+export const savePost = (post) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"},
+        body: JSON.stringify(post)
+    }
+    return fetch(`${apiURL}/posts`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            applicationElement.dispatchEvent(new CustomEvent ("stateChanged"))
+        })
+       
 }

@@ -1,10 +1,9 @@
 import { renderApp } from "../main.js"
-import { getPosts } from "../data/provider.js";
+import { getPosts, getUsers, savePost} from "../data/provider.js";
 
 
 
 document.addEventListener("click", clickEvent => {
-    
     if (clickEvent.target.id === "haveAGif") {
         clickEvent.preventDefault();
         document.getElementById("createPost").innerHTML = newPost()
@@ -14,6 +13,31 @@ document.addEventListener("click", clickEvent => {
         
     }
 })
+
+document.addEventListener(
+    "click",
+    clickEvent => {
+        if (clickEvent.target.id === "savePost") {
+            const newTitle = document.querySelector("#newPostTitle").value
+            const newURL = document.querySelector("#newPostURL").value
+            const newStory = document.querySelector("#newPostStory").value
+            const newDate = new Date().toLocaleDateString()
+            
+            const postUser = parseInt(localStorage.getItem("gg_user"))
+            
+            const dataToSendToAPI = {
+                title: newTitle,
+                url: newURL,
+                story: newStory,
+                userId: postUser,
+                date: newDate
+            }
+            savePost(dataToSendToAPI)
+    }
+} 
+)
+
+
 
 document.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "cancelPost") {
@@ -25,43 +49,42 @@ const newPost = () => {
     let html = `
     <div class="newPost">
         <div class="newPost__description" >
-            <input type="text" placeholder="title">
+            <input id="newPostTitle" type="text" placeholder="title">
         </div>
         <div class="newPost__input">   
-            <input type="text" placeholder="URL of gif">
+            <input id="newPostURL" type="text" placeholder="URL of gif">
         </div>
         <div class="newPost__input">
-            <textarea placeholder="Story behind your gif..."></textarea>
+            <textarea id="newPostStory" placeholder="Story behind your gif..."></textarea>
         </div>
-        <button>Save</button>
-        <button id="cancelPost">Cancel</button>
-            
-        
+            <button id="savePost">Save</button>
+            <button id="cancelPost">Cancel</button>
     </div>
     `
+    
     return html
+    
 }
 
 
 const postList = () => {
     const posts = getPosts()
-    let html = `<ul>`
+    const users = getUsers()
+
+    let html = ``
     for (const post of posts) {
-        html += `<li>
-        <h4>${post.title}</h4>
-        <a href="${post.url}"></a>
-        <div>${post.story}</div>
-        <div>this was posted by ${post.userId} on ${post.date}</div>
-        </li>
+        const matchedUser = users.find(user => user.id === post.userId)    
+        html += `
+        <section class="post">
+            <h4>${post.title}</h4>
+            <img class="post__image" src="${post.url}">
+            <div class="post__tagline">${post.story}</div>
+            <div class-"post__remark">this was posted by ${matchedUser.firstName} on ${post.date}</div>
+        </section>
         `
     }
-    console.log(posts)
-    html += "</ul>"
     return html
 }
-
-
-
 
 
 
@@ -79,7 +102,6 @@ export const Feed = () => {
         </div>
         <section name="posts">
             ${postList()}
-
         </section>
     </article>
     `

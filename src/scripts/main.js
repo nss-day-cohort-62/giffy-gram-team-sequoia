@@ -7,7 +7,7 @@ const applicationElement = document.querySelector(".giffygram")
 
 export const renderApp = () => {
     fetchUsers()
-    .then(fetchPosts())
+    .then(() => fetchPosts() )
     .then(
         () => {
             const user = parseInt(localStorage.getItem("gg_user"))
@@ -21,3 +21,10 @@ export const renderApp = () => {
 }
 
 renderApp()
+
+document.addEventListener("stateChanged", event => {
+    console.log("State of data has changed. Regenerating HTML...")
+    renderApp()
+})
+
+
