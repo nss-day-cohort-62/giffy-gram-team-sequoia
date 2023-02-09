@@ -1,9 +1,10 @@
-import { getUsers } from "../data/provider.js"
+import { getUsers, fetchUsers} from "../data/provider.js"
 
 
 document.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "loginButton") {
         let foundUser = null
+        fetchUsers()
         const userState = getUsers()
 
         const email = document.querySelector("input[name='email']").value
@@ -17,10 +18,20 @@ document.addEventListener("click", clickEvent => {
 
         if (foundUser !== null) {
             localStorage.setItem("gg_user", foundUser.id)
-            document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+            // document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     }
 })
+
+document.addEventListener("click", clickEvent => {
+    if (clickEvent.target.name === "logoutButton"){
+        localStorage.clear()
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+    }
+    
+})
+
 
 export const LoginForm = () => {
     return `

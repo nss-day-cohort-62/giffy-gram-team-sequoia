@@ -1,31 +1,59 @@
 {
   "users": [
-    { "id": 1, 
-      "firstName": "Daniella", 
-      "lastName": "Agnoletti", 
-      "email": "daniella@agnoletti.com", 
-      "password": "daniella" 
+    {
+      "id": 1,
+      "firstName": "Daniella",
+      "lastName": "Agnoletti",
+      "email": "daniella@agnoletti.com",
+      "password": "daniella"
     },
-    { "id": 2, 
-      "firstName": "Ray", 
-      "lastName": "Medrano", 
-      "email": "ray@medrano.com", 
-      "password": "ray" 
+    {
+      "id": 2,
+      "firstName": "Ray",
+      "lastName": "Medrano",
+      "email": "ray@medrano.com",
+      "password": "ray"
     },
-    { "id": 3, 
-      "firstName": "Meg", 
-      "lastName": "Ducharme", 
-      "email": "meg@ducharme.com", 
-      "password": "meg" 
+    {
+      "id": 3,
+      "firstName": "Meg",
+      "lastName": "Ducharme",
+      "email": "meg@ducharme.com",
+      "password": "meg"
     }
   ],
   "posts": [
-    { "id": 1,
+    {
+      "id": 1,
       "title": "Wasup",
       "url": "https://media1.giphy.com/media/eoVusT7Pi9ODe/giphy.webp?cid=ecf05e47rocdhwe8lk37mffn2za9ticr3t7zr3dcsmqagl1u&rid=giphy.webp&ct=g",
       "story": "this is me saying 'wasup'",
       "userId": 1,
       "date": "2/8/2023"
+    },
+    {
+      "id": 2,
+      "title": "Another Gif",
+      "url": "https://media1.giphy.com/media/eoVusT7Pi9ODe/giphy.webp?cid=ecf05e47rocdhwe8lk37mffn2za9ticr3t7zr3dcsmqagl1u&rid=giphy.webp&ct=g",
+      "story": "this is me saying 'wasup'",
+      "userId": 1,
+      "date": "2/8/2023"
+    },
+    {
+      "title": "Jordan's Jam!",
+      "url": "https://media.giphy.com/media/2lbhL8dSGMh8I/giphy.gif",
+      "story": "She loves it!",
+      "userId": 1,
+      "date": "2/9/2023",
+      "id": 3
+    },
+    {
+      "title": "Nasty Pizza",
+      "url": "https://media.giphy.com/media/KVEytZGySKyQM/giphy.gif",
+      "story": "stephen doesn't know",
+      "userId": 1,
+      "date": "2/9/2023",
+      "id": 4
     }
   ]
 }
