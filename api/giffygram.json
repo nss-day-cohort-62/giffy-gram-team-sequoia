@@ -29,31 +29,38 @@
       "url": "https://media1.giphy.com/media/eoVusT7Pi9ODe/giphy.webp?cid=ecf05e47rocdhwe8lk37mffn2za9ticr3t7zr3dcsmqagl1u&rid=giphy.webp&ct=g",
       "story": "this is me saying 'wasup'",
       "userId": 1,
-      "date": "2/8/2023"
-    },
-    {
-      "id": 2,
-      "title": "Another Gif",
-      "url": "https://media1.giphy.com/media/eoVusT7Pi9ODe/giphy.webp?cid=ecf05e47rocdhwe8lk37mffn2za9ticr3t7zr3dcsmqagl1u&rid=giphy.webp&ct=g",
-      "story": "this is me saying 'wasup'",
-      "userId": 1,
-      "date": "2/8/2023"
+      "date": "2/8/2020"
     },
     {
       "title": "Jordan's Jam!",
       "url": "https://media.giphy.com/media/2lbhL8dSGMh8I/giphy.gif",
       "story": "She loves it!",
       "userId": 1,
-      "date": "2/9/2023",
+      "date": "2/9/2022",
       "id": 3
     },
     {
-      "title": "Nasty Pizza",
-      "url": "https://media.giphy.com/media/KVEytZGySKyQM/giphy.gif",
-      "story": "stephen doesn't know",
+      "title": "24601",
+      "url": "https://media.giphy.com/media/WjLh5GG4VH42Y/giphy.gif",
+      "story": "Hugh Jackman is the GOAT",
+      "userId": 2,
+      "date": "2/9/2023",
+      "id": 5
+    },
+    {
+      "title": "its meeee",
+      "url": "https://media.giphy.com/media/75yk3rYrClLyM/giphy.gif",
+      "story": "Daniella",
       "userId": 1,
       "date": "2/9/2023",
-      "id": 4
+      "id": 6
+    }
+  ],
+  "userFavorites": [
+    {
+      "id": 1,
+      "userId": 2,
+      "postId": 3
     }
   ]
 }

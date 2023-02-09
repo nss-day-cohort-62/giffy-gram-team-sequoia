@@ -11,7 +11,8 @@ const applicationState = {
         displayFavorites: false,
         displayMessages: false
     },
-    posts: []
+    posts: [],
+    userFavorites: []
 }
 
 export const fetchUsers = () => {
@@ -53,7 +54,66 @@ export const savePost = (post) => {
     return fetch(`${apiURL}/posts`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            applicationElement.dispatchEvent(new CustomEvent ("stateChanged"))
+            document.dispatchEvent(new CustomEvent ("stateChanged"))
         })
        
 }
+
+
+
+export const deletePost = (id) => {
+    return fetch(`${apiURL}/posts/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+
+
+
+
+
+export const fetchUserFavorites = () => {
+    return fetch(`${apiURL}/userFavorites`)
+        .then(response => response.json())
+        .then(
+            (data) => {
+                applicationState.userFavorites = data
+            }
+        )
+}
+
+
+
+
+export const saveUserFavorite = (post) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"},
+        body: JSON.stringify(post)
+    }
+    return fetch(`${apiURL}/userFavorites`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            document.dispatchEvent(new CustomEvent ("stateChanged"))
+        })
+       
+}
+
+export const getUserFavorites = () => {
+    return applicationState.userFavorites.map(post => ({...post}))
+}
+
+
+export const deleteUserFavorite = (id) => {
+    return fetch(`${apiURL}/userFavorites/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                document.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+

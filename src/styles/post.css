@@ -75,3 +75,7 @@
     font-size: 2em;
     margin: 1em 0 0.5em 0;
 }
+
+.post__reactions {
+    height: 1rem;
+}

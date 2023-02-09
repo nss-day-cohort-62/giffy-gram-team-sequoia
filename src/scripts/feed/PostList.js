@@ -1,5 +1,5 @@
 import { renderApp } from "../main.js"
-import { getPosts, getUsers, savePost} from "../data/provider.js";
+import { getPosts, getUsers, savePost, getUserFavorites, saveUserFavorite, deletePost, deleteUserFavorite } from "../data/provider.js";
 
 
 
@@ -12,7 +12,7 @@ document.addEventListener("click", clickEvent => {
         // console.log("this works")
         
     }
-})
+}) 
 
 document.addEventListener(
     "click",
@@ -67,12 +67,147 @@ const newPost = () => {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener(
+//     "click",
+//     clickEvent => {
+//         if (clickEvent.target.id === "notFavorite") {
+//             const favPostId = parseInt(clickEvent.target.value)
+//             const favPostUser = parseInt(localStorage.getItem("gg_user"))
+            
+//             const dataToSendToAPI = {
+//                 postId: favPostId,
+//                 userId: favPostUser
+//             }
+//             saveUserFavorite(dataToSendToAPI)
+//             document.dispatchEvent(new CustomEvent("stateChanged"))
+//     }
+// } 
+// )
+
+document.addEventListener(
+    "click",
+    clickEvent => {
+         const itemClicked = clickEvent.target
+         if (itemClicked.id.startsWith("notFavorite")) {
+            const [,favPostId] = itemClicked.id.split("--")
+         
+
+
+            const favPostUser = parseInt(localStorage.getItem("gg_user"))
+            
+            const dataToSendToAPI = {
+                postId: parseInt(favPostId),
+                userId: favPostUser
+            }
+            saveUserFavorite(dataToSendToAPI)
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+    }
+    }
+)
+
+
+document.addEventListener(
+    "click",
+    clickEvent => {
+        const itemClicked = clickEvent.target
+        if (itemClicked.id.startsWith("favorite")) {
+            const [,matchedFavoriteId] = itemClicked.id.split("--")
+            deleteUserFavorite(parseInt(matchedFavoriteId))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+            
+    }
+} 
+)
+
+
+
+
+
+
+document.addEventListener(
+    "click",
+    clickEvent => {
+        const itemClicked = clickEvent.target
+        if (itemClicked.id.startsWith("trash")) {
+            const [,postId] = itemClicked.id.split("--")
+            deletePost(parseInt(postId))
+            document.dispatchEvent(new CustomEvent("stateChanged"))
+        }
+    }
+
+)
+
+
+
+
+
+const isFavorited = (post) => { 
+    const userFavorites = getUserFavorites()
+    const matchedFavorite = userFavorites.find(userFav => userFav.postId === post.id)
+    let html = ""
+    if (matchedFavorite && matchedFavorite.userId === parseInt(localStorage.getItem("gg_user"))) {
+        html += `<img class="post__reactions" id="favorite--${matchedFavorite.id}" value="${matchedFavorite.id}" src="./images/favorite-star-yellow.svg">`
+    } else {
+        html += `<img class="post__reactions" id="notFavorite--${post.id}" value="${post.id}" src="./images/favorite-star-blank.svg">`
+    }
+    return html
+}
+
+
+
+
+const deleteOption = (post) => {
+    const matchedUser = parseInt(localStorage.getItem("gg_user"))
+    let html = ""
+    if (post.userId === matchedUser) {
+        html += `
+        <img id="trash--${post.id}" class="post__reactions" src="./images/block.svg">
+        `
+    }
+    return html
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const postList = () => {
     const posts = getPosts()
     const users = getUsers()
+    const sortedPosts = posts.sort((a, b) => b.id - a.id)
 
     let html = ``
-    for (const post of posts) {
+    for (const post of sortedPosts) {
         const matchedUser = users.find(user => user.id === post.userId)    
         html += `
         <section class="post">
@@ -80,11 +215,28 @@ const postList = () => {
             <img class="post__image" src="${post.url}">
             <div class="post__tagline">${post.story}</div>
             <div class-"post__remark">this was posted by ${matchedUser.firstName} on ${post.date}</div>
+            <section class="post__actions">
+                ${isFavorited(post)}
+                ${deleteOption(post)}
+            </section>
         </section>
         `
     }
     return html
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
