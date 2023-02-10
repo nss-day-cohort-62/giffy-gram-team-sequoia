@@ -29,14 +29,14 @@
       "url": "https://media1.giphy.com/media/eoVusT7Pi9ODe/giphy.webp?cid=ecf05e47rocdhwe8lk37mffn2za9ticr3t7zr3dcsmqagl1u&rid=giphy.webp&ct=g",
       "story": "this is me saying 'wasup'",
       "userId": 1,
-      "date": "2/8/2020"
+      "date": "Mon Feb 06 2020 15:05:04 GMT-0600 (Central Standard Time)"
     },
     {
       "title": "Jordan's Jam!",
       "url": "https://media.giphy.com/media/2lbhL8dSGMh8I/giphy.gif",
       "story": "She loves it!",
       "userId": 1,
-      "date": "2/9/2022",
+      "date": "Mon Feb 06 2021 15:05:04 GMT-0600 (Central Standard Time)",
       "id": 3
     },
     {
@@ -44,7 +44,7 @@
       "url": "https://media.giphy.com/media/WjLh5GG4VH42Y/giphy.gif",
       "story": "Hugh Jackman is the GOAT",
       "userId": 2,
-      "date": "2/9/2023",
+      "date": "Mon Feb 06 2022 15:05:04 GMT-0600 (Central Standard Time)",
       "id": 5
     },
     {
@@ -52,8 +52,32 @@
       "url": "https://media.giphy.com/media/75yk3rYrClLyM/giphy.gif",
       "story": "Daniella",
       "userId": 1,
-      "date": "2/9/2023",
+      "date": "Mon Feb 06 2020 15:05:04 GMT-0600 (Central Standard Time)",
       "id": 6
+    },
+    {
+      "title": "yo",
+      "url": "https://media.giphy.com/media/XxNqIS6I7J0B2/giphy.gif",
+      "story": "date format",
+      "userId": 1,
+      "date": "2023-02-09T21:38:14.459Z",
+      "id": 7
+    },
+    {
+      "title": "vapin",
+      "url": "https://media.giphy.com/media/f9ejHZF6RAsdklnCnW/giphy.gif",
+      "story": "bad",
+      "userId": 1,
+      "date": "2023-02-10T15:28:31.201Z",
+      "id": 8
+    },
+    {
+      "title": "mhm",
+      "url": "https://media.giphy.com/media/nc20IL86JLL0A7l4zK/giphy.gif",
+      "story": "grrr",
+      "userId": 1,
+      "date": "2023/2/10",
+      "id": 9
     }
   ],
   "userFavorites": [

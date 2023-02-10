@@ -21,7 +21,14 @@ document.addEventListener(
             const newTitle = document.querySelector("#newPostTitle").value
             const newURL = document.querySelector("#newPostURL").value
             const newStory = document.querySelector("#newPostStory").value
-            const newDate = new Date().toLocaleDateString()
+            // const newDate = new Date()
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+
+            const newDate = year + "/" + month + "/" + day
+            console.log(newDate)
             
             const postUser = parseInt(localStorage.getItem("gg_user"))
             
@@ -200,7 +207,6 @@ const deleteOption = (post) => {
 
 
 
-
 const postList = () => {
     const posts = getPosts()
     const users = getUsers()
@@ -208,13 +214,17 @@ const postList = () => {
 
     let html = ``
     for (const post of sortedPosts) {
-        const matchedUser = users.find(user => user.id === post.userId)    
+        const matchedUser = users.find(user => user.id === post.userId)  
+        // const newDate = parseInt(post.date)
+        const d = new Date(post.date);
+        const formattedDate = d.toLocaleDateString();
+        
         html += `
         <section class="post">
             <h4>${post.title}</h4>
             <img class="post__image" src="${post.url}">
             <div class="post__tagline">${post.story}</div>
-            <div class-"post__remark">this was posted by ${matchedUser.firstName} on ${post.date}</div>
+            <div class-"post__remark">this was posted by ${matchedUser.firstName} on ${formattedDate}</div>
             <section class="post__actions">
                 ${isFavorited(post)}
                 ${deleteOption(post)}
