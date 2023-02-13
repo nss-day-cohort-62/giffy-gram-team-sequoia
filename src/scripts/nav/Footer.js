@@ -131,8 +131,19 @@ document.addEventListener(
     "change",
     clickEvent => {
         const itemClicked = clickEvent.target
-        if (itemClicked.id === "fav") {
+        if (itemClicked.type === "checkbox") {
             setUserFavFilter(parseInt(clickEvent.target.value))
+        }
+    
+    }
+)
+
+document.addEventListener(
+    "change",
+    clickEvent => {
+        const itemClicked = clickEvent.target
+        if (itemClicked.id === "checked") {
+            setUserFavFilter(null)
         }
     
     }
@@ -199,9 +210,9 @@ export const isUserSelected = (user) => {
 export const isUserFavSelected = () => {
     const transient = getTransient()
     if (transient.userFavId) {
-        return `checked`
+        return `checked id="checked"`
     } else {
-        return ""
+        return `id='unchecked'`
     }
 }
 
@@ -247,7 +258,7 @@ export const Footer = () => {
     </div>
     <div class="footer__item">
         Show only favorites
-            <input ${isUserFavSelected()} type="checkbox" id="fav" value="${localStorage.getItem("gg_user")}">
+            <input ${isUserFavSelected()} type="checkbox"  value="${localStorage.getItem("gg_user")}">
             </input>
     </div>
     <div class="footer__item">

@@ -152,7 +152,7 @@ const isFavorited = (post) => {
     } else {
         html += `<img class="post__reactions" id="notFavorite--${post.id}" value="${post.id}" src="./images/favorite-star-blank.svg">`
     }
-    console.log(html)
+    //console.log(html)
     return html
 }
 
