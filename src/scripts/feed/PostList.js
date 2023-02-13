@@ -86,30 +86,6 @@ const newPost = () => {
 
 
 
-
-
-
-
-
-
-
-// document.addEventListener(
-//     "click",
-//     clickEvent => {
-//         if (clickEvent.target.id === "notFavorite") {
-//             const favPostId = parseInt(clickEvent.target.value)
-//             const favPostUser = parseInt(localStorage.getItem("gg_user"))
-            
-//             const dataToSendToAPI = {
-//                 postId: favPostId,
-//                 userId: favPostUser
-//             }
-//             saveUserFavorite(dataToSendToAPI)
-//             document.dispatchEvent(new CustomEvent("stateChanged"))
-//     }
-// } 
-// )
-
 document.addEventListener(
     "click",
     clickEvent => {
@@ -169,13 +145,14 @@ document.addEventListener(
 
 const isFavorited = (post) => { 
     const userFavorites = getUserFavorites()
-    const matchedFavorite = userFavorites.find(userFav => userFav.postId === post.id)
+    const matchedFavorite = userFavorites.find(userFav => (userFav.postId === post.id) && (userFav.userId === parseInt(localStorage.getItem("gg_user"))))
     let html = ""
-    if (matchedFavorite && matchedFavorite.userId === parseInt(localStorage.getItem("gg_user"))) {
+    if (matchedFavorite) {
         html += `<img class="post__reactions" id="favorite--${matchedFavorite.id}" value="${matchedFavorite.id}" src="./images/favorite-star-yellow.svg">`
     } else {
         html += `<img class="post__reactions" id="notFavorite--${post.id}" value="${post.id}" src="./images/favorite-star-blank.svg">`
     }
+    console.log(html)
     return html
 }
 
@@ -201,15 +178,10 @@ const deleteOption = (post) => {
 
 
 
-
-
-
-
-
-
 const postList = () => {
     const posts = getPosts()
     const users = getUsers()
+    const userFavorites = getUserFavorites()
     const sortedPosts = posts.sort((a, b) => b.id - a.id)
     let filteredPosts = []
     let printedFilteredPosts = []
@@ -227,11 +199,31 @@ const postList = () => {
 
     if (transient.selectedUserId) {
         for (const post of sortedPosts) {
-            if(post.userId === parseInt(transient.selectedUserId)) {
+            if (post.userId === parseInt(transient.selectedUserId)) {
                 filteredPosts.push(post)
             }
         }
     }
+
+    if (transient.userFavId) {
+        let filteredFavPosts = []
+        for (const userFav of userFavorites) {
+            if (transient.userFavId === userFav.userId) {
+                filteredFavPosts.push(userFav)
+            }
+        }
+
+        for (const post of sortedPosts) {
+            for (const filteredFav of filteredFavPosts) {
+                if (post.id === filteredFav.postId) {
+                    filteredPosts.push(post)
+                }
+            }
+        }
+    }
+
+
+
     if (filteredPosts != []) {
         printedFilteredPosts = [...new Set(filteredPosts)]
     }
@@ -243,7 +235,32 @@ const postList = () => {
 
     console.log(printedFilteredPosts)
 
-//
+
+
+if (filteredPosts.length === 0){
+    let html = ``
+    for (const post of sortedPosts) {
+        const matchedUser = users.find(user => user.id === post.userId)  
+        // const newDate = parseInt(post.date)
+        const d = new Date(post.date);
+        const formattedDate = d.toLocaleDateString();
+
+        html += `
+        <section class="post">
+            <h4>${post.title}</h4>
+            <img class="post__image" src="${post.url}">
+            <div class="post__tagline">${post.story}</div>
+            <div class-"post__remark">this was posted by ${matchedUser.firstName} on ${formattedDate}</div>
+            <section class="post__actions">
+                ${isFavorited(post)}
+                ${deleteOption(post)}
+            </section>
+        </section>
+        `
+    }
+    return html
+
+} else {
     let html = ``
     for (const post of printedFilteredPosts) {
         const matchedUser = users.find(user => user.id === post.userId)  
@@ -266,6 +283,15 @@ const postList = () => {
     }
     return html
 }
+
+    
+}
+
+
+
+
+
+
 
 
 
