@@ -1,5 +1,5 @@
 import { renderApp } from "../main.js"
-import { getPosts, getUsers, savePost, getUserFavorites, saveUserFavorite, deletePost, deleteUserFavorite } from "../data/provider.js";
+import { getPosts, getUsers, savePost, getUserFavorites, saveUserFavorite, deletePost, deleteUserFavorite, getTransient } from "../data/provider.js";
 
 
 
@@ -211,14 +211,46 @@ const postList = () => {
     const posts = getPosts()
     const users = getUsers()
     const sortedPosts = posts.sort((a, b) => b.id - a.id)
+    let filteredPosts = []
+    let printedFilteredPosts = []
+    const transient = getTransient()
+//
+    if (transient.selectedYear) {
+        for (const post of sortedPosts) {
+            const postDate = new Date(post.date)
+            const postYear = postDate.getFullYear()
+            if(postYear === parseInt(transient.selectedYear)) {
+                filteredPosts.push(post)
+            }
+        }
+    }
 
+    if (transient.selectedUserId) {
+        for (const post of sortedPosts) {
+            if(post.userId === parseInt(transient.selectedUserId)) {
+                filteredPosts.push(post)
+            }
+        }
+    }
+    if (filteredPosts != []) {
+        printedFilteredPosts = [...new Set(filteredPosts)]
+    }
+    if ((transient.selectedYear === null) && (transient.selectedUserId === null)) {
+        printedFilteredPosts = sortedPosts.map(post => ({...post}))
+    }
+
+
+
+    console.log(printedFilteredPosts)
+
+//
     let html = ``
-    for (const post of sortedPosts) {
+    for (const post of printedFilteredPosts) {
         const matchedUser = users.find(user => user.id === post.userId)  
         // const newDate = parseInt(post.date)
         const d = new Date(post.date);
         const formattedDate = d.toLocaleDateString();
-        
+
         html += `
         <section class="post">
             <h4>${post.title}</h4>

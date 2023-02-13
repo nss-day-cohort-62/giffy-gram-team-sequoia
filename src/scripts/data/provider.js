@@ -12,8 +12,30 @@ const applicationState = {
         displayMessages: false
     },
     posts: [],
-    userFavorites: []
+    userFavorites: [],
+    transient: {}
 }
+
+export const setYearFilter = (year) => {
+    applicationState.transient.selectedYear = year
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setUserFilter = (id) => {
+    applicationState.transient.selectedUserId = id
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const clearTransient = () => {
+    applicationState.transient = {}
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+
+}
+
+export const getTransient = () => {
+    return applicationState.transient
+}
+
 
 export const fetchUsers = () => {
     return fetch(`${apiURL}/users`)
