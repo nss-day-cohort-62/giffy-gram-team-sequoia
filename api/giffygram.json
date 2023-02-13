@@ -28,7 +28,7 @@
       "title": "Wasup",
       "url": "https://media1.giphy.com/media/eoVusT7Pi9ODe/giphy.webp?cid=ecf05e47rocdhwe8lk37mffn2za9ticr3t7zr3dcsmqagl1u&rid=giphy.webp&ct=g",
       "story": "this is me saying 'wasup'",
-      "userId": 1,
+      "userId": 2,
       "date": "Mon Feb 06 2020 15:05:04 GMT-0600 (Central Standard Time)"
     },
     {
@@ -87,19 +87,19 @@
       "postId": 3
     },
     {
-      "postId": 3,
-      "userId": 1,
-      "id": 2
-    },
-    {
       "postId": 6,
       "userId": 1,
       "id": 4
     },
     {
-      "postId": 1,
+      "postId": 8,
       "userId": 1,
-      "id": 11
+      "id": 5
+    },
+    {
+      "postId": 3,
+      "userId": 1,
+      "id": 6
     }
   ]
 }
