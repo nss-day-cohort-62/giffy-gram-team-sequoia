@@ -173,12 +173,49 @@ const deleteOption = (post) => {
 
 
 
+const FullFilter = () => {
+    const posts = getPosts()
+    let sortedPosts = posts.sort((a, b) => b.id - a.id)
+    const transient = getTransient()
+    if (transient.selectedYear) {
+        sortedPosts = sortedPosts.filter(post => {
+            const postDate = new Date(post.date)
+            const postYear = postDate.getFullYear()
+            return postYear === parseInt(transient.selectedYear)
+        })
+    }
+    if (transient.selectedUserId) {
+        sortedPosts = sortedPosts.filter(post => post.userId === transient.selectedUserId)
+    }
+    if (transient.userFavId) {
+        const userFavorites = getUserFavorites()
+        let filteredFavPosts = []
+        for (const userFav of userFavorites) {
+            if (transient.userFavId === userFav.userId) {
+                filteredFavPosts.push(userFav)
+            }
+        }
+        
+        sortedPosts = sortedPosts.filter(post => {
+            for (const filteredFav of filteredFavPosts) {
+                if (post.id === filteredFav.postId) {
+                    return true
+                }
+            }
+            return false
+        })
+        
+    }
+    return sortedPosts
+}
+
 
 
 
 
 
 const postList = () => {
+    /*
     const posts = getPosts()
     const users = getUsers()
     const userFavorites = getUserFavorites()
@@ -235,8 +272,8 @@ const postList = () => {
 
     console.log(printedFilteredPosts)
 
-
-
+*/
+/*
 if (filteredPosts.length === 0){
     let html = ``
     for (const post of sortedPosts) {
@@ -261,6 +298,11 @@ if (filteredPosts.length === 0){
     return html
 
 } else {
+    */
+
+    const users = getUsers()
+
+    const printedFilteredPosts = FullFilter()
     let html = ``
     for (const post of printedFilteredPosts) {
         const matchedUser = users.find(user => user.id === post.userId)  
@@ -282,7 +324,7 @@ if (filteredPosts.length === 0){
         `
     }
     return html
-}
+/*}*/
 
     
 }
