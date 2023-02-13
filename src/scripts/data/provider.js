@@ -26,6 +26,12 @@ export const setUserFilter = (id) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const setUserFavFilter = (userId) => {
+    applicationState.transient.userFavId = userId
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+
 export const clearTransient = () => {
     applicationState.transient = {}
     document.dispatchEvent(new CustomEvent("stateChanged"))

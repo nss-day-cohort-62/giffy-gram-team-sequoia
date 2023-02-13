@@ -1,4 +1,4 @@
-import { getPosts, getUsers, getUserFavorites, fetchPosts, setYearFilter, setUserFilter, clearTransient, getTransient } from "../data/provider.js";
+import { getPosts, getUsers, getUserFavorites, fetchPosts, setYearFilter, setUserFilter, clearTransient, getTransient, setUserFavFilter } from "../data/provider.js";
 
 
 
@@ -128,6 +128,18 @@ document.addEventListener(
 )
 
 document.addEventListener(
+    "change",
+    clickEvent => {
+        const itemClicked = clickEvent.target
+        if (itemClicked.id === "fav") {
+            setUserFavFilter(parseInt(clickEvent.target.value))
+        }
+    
+    }
+)
+
+
+document.addEventListener(
     "click",
     clickEvent => {
         const itemClicked = clickEvent.target
@@ -147,12 +159,59 @@ document.addEventListener(
         if (itemClicked.id === "checkTransientState") {
             const transient = getTransient()
             console.log(transient)
-            
     
         }
     
     }
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const isYearSelected = (year) => {
+    const transient = getTransient()
+    if (parseInt(transient.selectedYear) === year) {
+        return `selected`
+    } else {
+        return ""
+    }
+} 
+
+export const isUserSelected = (user) => {
+    const transient = getTransient()
+    if (parseInt(transient.selectedUserId) === user.id) {
+        return `selected`
+    } else {
+        return ""
+    }
+} 
+
+
+export const isUserFavSelected = () => {
+    const transient = getTransient()
+    if (transient.userFavId) {
+        return `checked`
+    } else {
+        return ""
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -170,7 +229,7 @@ export const Footer = () => {
             <option value="0">Select A Year</option>
             ${
                 uniqueYears.map(year => {
-                        return `<option class="yearSelection" value="${year}">${year}</option>`
+                        return `<option ${isYearSelected(year)} class="yearSelection" value="${year}">${year}</option>`
                 }).join("")
             }
             </select>
@@ -181,14 +240,14 @@ export const Footer = () => {
             <option value="0">Select A User</option>
             ${
                 userArr.map(user => {
-                    return `<option class="userSelection" value="${user.id}">${user.firstName} ${user.lastName}</option>`
+                    return `<option ${isUserSelected(user)} class="userSelection" value="${user.id}">${user.firstName} ${user.lastName}</option>`
                 }).join("")
             }
             </select>
     </div>
     <div class="footer__item">
         Show only favorites
-            <input type="checkbox">
+            <input ${isUserFavSelected()} type="checkbox" id="fav" value="${localStorage.getItem("gg_user")}">
             </input>
     </div>
     <div class="footer__item">
@@ -198,6 +257,7 @@ export const Footer = () => {
         <button id="checkTransientState">Check</button>
     </div>
     `
+
 
     return html
 }
