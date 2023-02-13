@@ -104,8 +104,13 @@ document.addEventListener(
         clickEvent => {
             const itemClicked = clickEvent.target
             if (itemClicked.id.startsWith("yearSelection")) {
+                if (clickEvent.target.value === "0") {
+                    setYearFilter(null)
+                } else {
+
+                    setYearFilter(clickEvent.target.value)
+                }
                 // const [,year] = itemClicked.id.split("--")
-                setYearFilter(clickEvent.target.value)
                 
             }
         
