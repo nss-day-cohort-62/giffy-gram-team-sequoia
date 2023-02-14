@@ -1,4 +1,4 @@
-import { getUsers, fetchUsers} from "../data/provider.js"
+import { getUsers, fetchUsers, clearTransient} from "../data/provider.js"
 
 
 document.addEventListener("click", clickEvent => {
@@ -18,7 +18,6 @@ document.addEventListener("click", clickEvent => {
 
         if (foundUser !== null) {
             localStorage.setItem("gg_user", foundUser.id)
-            // document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
             document.dispatchEvent(new CustomEvent("stateChanged"))
         }
     }
@@ -26,6 +25,7 @@ document.addEventListener("click", clickEvent => {
 
 document.addEventListener("click", clickEvent => {
     if (clickEvent.target.name === "logoutButton"){
+        clearTransient()
         localStorage.clear()
         document.dispatchEvent(new CustomEvent("stateChanged"))
     }

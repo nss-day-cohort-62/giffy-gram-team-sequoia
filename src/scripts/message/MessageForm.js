@@ -6,8 +6,8 @@ document.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "directMessageIcon") {
         // clickEvent.preventDefault();
         document.getElementById("newMessage").innerHTML = newMessage()
-        console.log("click")
     }
+    console.log("click",clickEvent)
 })
 
 

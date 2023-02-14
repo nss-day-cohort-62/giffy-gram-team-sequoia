@@ -32,6 +32,14 @@ export const setUserFavFilter = (userId) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const setMsgDisplayStateTrue = () => {
+    applicationState.transient.msgDisplayState = true
+}
+
+// export const setMsgDisplayStateFalse = () => {
+//     applicationState.transient.msgDisplayState = false
+// }
+
 
 export const clearTransient = () => {
     applicationState.transient = {}
@@ -180,3 +188,19 @@ export const sendMessage = (msg) => {
        
 }
 
+export const changeReadStatus = (msgId, newMsg) => {
+    const fetchOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newMsg)
+    }
+
+    return fetch(`${apiURL}/messages/${msgId}`, fetchOptions)
+    .then(response => response.json())
+    .then (() => {
+        document.dispatchEvent(new CustomEvent ("stateChanged"))
+    })
+
+}
