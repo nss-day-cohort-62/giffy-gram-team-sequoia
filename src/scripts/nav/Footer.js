@@ -3,12 +3,6 @@ import { getPosts, getUsers, getUserFavorites, fetchPosts, setYearFilter, setUse
 
 
 
-
-
-
-
-
-
 const filterByYears = () => {
     const posts = getPosts()
     let newArr = []
@@ -23,8 +17,6 @@ const filterByYears = () => {
 
 
 
-
-
 const filterByUsers = () => {
     const users = getUsers()
     let newArr = []
@@ -33,33 +25,6 @@ const filterByUsers = () => {
     }
     return newArr
 }
-
-
-
-
-// let selectedYear = 0;
-
-// export const filterPostYears = () => {
-//     const posts = getPosts()
-//     const sortedPosts = posts.sort((a, b) => b.id - a.id)
-//     let filteredArr = []
-//     if (selectedYear = 0) {
-//         filteredArr = sortedPosts
-//     } else {
-//         for (const post of sortedPosts) {
-//             const postDate = new Date(post.date)
-//             const postYear = postDate.getFullYear()
-//             if (parseInt(selectedYear) === parseInt(postYear)) {
-//                 filteredArr.push(post)
-//             }
-//         }
-//     }
-//     return filteredArr
-// }
-
-
-// let userFilterState = false
-// let userFavoriteState = false
 
 
 
@@ -79,26 +44,6 @@ export const filterByYear = (post) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener(
         "change",
         clickEvent => {
@@ -110,7 +55,6 @@ document.addEventListener(
 
                     setYearFilter(clickEvent.target.value)
                 }
-                // const [,year] = itemClicked.id.split("--")
                 
             }
         
@@ -123,7 +67,6 @@ document.addEventListener(
     clickEvent => {
         const itemClicked = clickEvent.target
         if (itemClicked.id.startsWith("userSelection")) {
-            // const [,userId] = itemClicked.id.split("--")
             setUserFilter(parseInt(clickEvent.target.value))
             
     
@@ -184,15 +127,6 @@ document.addEventListener(
 
 
 
-
-
-
-
-
-
-
-
-
 export const isYearSelected = (year) => {
     const transient = getTransient()
     if (parseInt(transient.selectedYear) === year) {
@@ -220,13 +154,6 @@ export const isUserFavSelected = () => {
         return `id='unchecked'`
     }
 }
-
-
-
-
-
-
-
 
 
 

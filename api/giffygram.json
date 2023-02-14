@@ -78,6 +78,14 @@
       "userId": 1,
       "date": "2023/2/10",
       "id": 9
+    },
+    {
+      "title": "yowza",
+      "url": "https://i.pinimg.com/originals/4c/25/21/4c25213ddb6308f0eeab55eaeff252e1.gif",
+      "story": "woh",
+      "userId": 2,
+      "date": "2023/2/14",
+      "id": 10
     }
   ],
   "userFavorites": [
@@ -100,6 +108,11 @@
       "postId": 3,
       "userId": 1,
       "id": 6
+    },
+    {
+      "postId": 1,
+      "userId": 1,
+      "id": 7
     }
   ],
   "messages": [
@@ -108,7 +121,7 @@
       "postRecipient": 2,
       "message": "what up ray dawg",
       "date": "2023/2/14",
-      "read": false,
+      "read": true,
       "id": 1
     },
     {
@@ -116,7 +129,7 @@
       "postRecipient": 3,
       "message": "henlo",
       "date": "2023/2/14",
-      "read": false,
+      "read": true,
       "id": 2
     },
     {
@@ -124,8 +137,48 @@
       "postRecipient": 3,
       "message": "numero dos",
       "date": "2023/2/14",
-      "read": false,
+      "read": true,
       "id": 3
+    },
+    {
+      "postUser": 1,
+      "postRecipient": 3,
+      "message": "yoyoyoyoyo",
+      "date": "2023/2/14",
+      "read": true,
+      "id": 4
+    },
+    {
+      "postUser": 2,
+      "postRecipient": 1,
+      "message": "hello daniella",
+      "date": "2023/2/14",
+      "read": false,
+      "id": 5
+    },
+    {
+      "postUser": 2,
+      "postRecipient": 3,
+      "message": "ohhhh yeahhhh",
+      "date": "2023/2/14",
+      "read": false,
+      "id": 6
+    },
+    {
+      "postUser": 1,
+      "postRecipient": 2,
+      "message": "something something",
+      "date": "2023/2/14",
+      "read": false,
+      "id": 7
+    },
+    {
+      "postUser": 1,
+      "postRecipient": 3,
+      "message": "cool beans",
+      "date": "2023/2/14",
+      "read": false,
+      "id": 8
     }
   ]
 }

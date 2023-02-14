@@ -7,9 +7,7 @@ document.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "haveAGif") {
         clickEvent.preventDefault();
         document.getElementById("createPost").innerHTML = newPost()
-        // document.getElementById("haveAGif").insertAdjacentElement(text, newPost())
-        // document.getElementById("haveAGif").class = "newPost"
-        // console.log("this works")
+
         
     }
 }) 
@@ -21,7 +19,6 @@ document.addEventListener(
             const newTitle = document.querySelector("#newPostTitle").value
             const newURL = document.querySelector("#newPostURL").value
             const newStory = document.querySelector("#newPostStory").value
-            // const newDate = new Date()
             var dateObj = new Date();
             var month = dateObj.getUTCMonth() + 1; //months from 1-12
             var day = dateObj.getUTCDate();
@@ -55,7 +52,7 @@ document.addEventListener("click", clickEvent => {
 const newPost = () => {
     let html = `
     <div class="newPost">
-        <div class="newPost__description" >
+        <div class="newPost__input" >
             <input id="newPostTitle" type="text" placeholder="title">
         </div>
         <div class="newPost__input">   
@@ -64,23 +61,16 @@ const newPost = () => {
         <div class="newPost__input">
             <textarea id="newPostStory" placeholder="Story behind your gif..."></textarea>
         </div>
+        <div>
             <button id="savePost">Save</button>
             <button id="cancelPost">Cancel</button>
+        </div>
     </div>
     `
     
     return html
     
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -152,7 +142,6 @@ const isFavorited = (post) => {
     } else {
         html += `<img class="post__reactions" id="notFavorite--${post.id}" value="${post.id}" src="./images/favorite-star-blank.svg">`
     }
-    //console.log(html)
     return html
 }
 
@@ -212,101 +201,13 @@ const FullFilter = () => {
 
 
 
-
-
 const postList = () => {
-    /*
-    const posts = getPosts()
-    const users = getUsers()
-    const userFavorites = getUserFavorites()
-    const sortedPosts = posts.sort((a, b) => b.id - a.id)
-    let filteredPosts = []
-    let printedFilteredPosts = []
-    const transient = getTransient()
-//
-    if (transient.selectedYear) {
-        for (const post of sortedPosts) {
-            const postDate = new Date(post.date)
-            const postYear = postDate.getFullYear()
-            if(postYear === parseInt(transient.selectedYear)) {
-                filteredPosts.push(post)
-            }
-        }
-    }
-
-    if (transient.selectedUserId) {
-        for (const post of sortedPosts) {
-            if (post.userId === parseInt(transient.selectedUserId)) {
-                filteredPosts.push(post)
-            }
-        }
-    }
-
-    if (transient.userFavId) {
-        let filteredFavPosts = []
-        for (const userFav of userFavorites) {
-            if (transient.userFavId === userFav.userId) {
-                filteredFavPosts.push(userFav)
-            }
-        }
-
-        for (const post of sortedPosts) {
-            for (const filteredFav of filteredFavPosts) {
-                if (post.id === filteredFav.postId) {
-                    filteredPosts.push(post)
-                }
-            }
-        }
-    }
-
-
-
-    if (filteredPosts != []) {
-        printedFilteredPosts = [...new Set(filteredPosts)]
-    }
-    if ((transient.selectedYear === null) && (transient.selectedUserId === null)) {
-        printedFilteredPosts = sortedPosts.map(post => ({...post}))
-    }
-
-
-
-    console.log(printedFilteredPosts)
-
-*/
-/*
-if (filteredPosts.length === 0){
-    let html = ``
-    for (const post of sortedPosts) {
-        const matchedUser = users.find(user => user.id === post.userId)  
-        // const newDate = parseInt(post.date)
-        const d = new Date(post.date);
-        const formattedDate = d.toLocaleDateString();
-
-        html += `
-        <section class="post">
-            <h4>${post.title}</h4>
-            <img class="post__image" src="${post.url}">
-            <div class="post__tagline">${post.story}</div>
-            <div class-"post__remark">this was posted by ${matchedUser.firstName} on ${formattedDate}</div>
-            <section class="post__actions">
-                ${isFavorited(post)}
-                ${deleteOption(post)}
-            </section>
-        </section>
-        `
-    }
-    return html
-
-} else {
-    */
-
     const users = getUsers()
 
     const printedFilteredPosts = FullFilter()
     let html = ``
     for (const post of printedFilteredPosts) {
         const matchedUser = users.find(user => user.id === post.userId)  
-        // const newDate = parseInt(post.date)
         const d = new Date(post.date);
         const formattedDate = d.toLocaleDateString();
 
@@ -324,27 +225,7 @@ if (filteredPosts.length === 0){
         `
     }
     return html
-/*}*/
-
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

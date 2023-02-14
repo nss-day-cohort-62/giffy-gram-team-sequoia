@@ -10,8 +10,14 @@
 
 .newPost {
     margin: 0 25%;
-    display: block;
-    text-align: center;
+    /* display: block;
+    text-align: center; */
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed slategrey;
+    border-radius: 0.5rem;
+    padding: 30px;
+    /* align-items: center; */
 }
 
 .newPost__input {
@@ -78,4 +84,16 @@
 
 .post__reactions {
     height: 1rem;
+}
+
+#newPostTitle {
+    width: 400px;
+}
+
+#newPostURL {
+    width: 400px;
+}
+
+#newPostStory {
+    width: 400px;
 }
