@@ -101,5 +101,31 @@
       "userId": 1,
       "id": 6
     }
+  ],
+  "messages": [
+    {
+      "postUser": 1,
+      "postRecipient": 2,
+      "message": "what up ray dawg",
+      "date": "2023/2/14",
+      "read": false,
+      "id": 1
+    },
+    {
+      "postUser": 1,
+      "postRecipient": 3,
+      "message": "henlo",
+      "date": "2023/2/14",
+      "read": false,
+      "id": 2
+    },
+    {
+      "postUser": 1,
+      "postRecipient": 3,
+      "message": "numero dos",
+      "date": "2023/2/14",
+      "read": false,
+      "id": 3
+    }
   ]
 }

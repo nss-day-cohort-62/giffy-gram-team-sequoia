@@ -354,7 +354,9 @@ if (filteredPosts.length === 0){
 export const Feed = () => {
     let html = ""
     html += `
-    <article class="giffygram__feed">
+    <article>
+        <div id="newMessage">
+        </div>
         <div id="createPost">
             <section class="miniMode" id="haveAGif">
                 
@@ -369,6 +371,7 @@ export const Feed = () => {
     `
     return html
 }
+
 
 
 
