@@ -20,6 +20,20 @@
       "lastName": "Ducharme",
       "email": "meg@ducharme.com",
       "password": "meg"
+    },
+    {
+      "firstName": "Jordan",
+      "lastName": "Victoria",
+      "email": "jgomeskuehner@gmail.com",
+      "password": "jordan",
+      "id": 4
+    },
+    {
+      "firstName": "Stephen",
+      "lastName": "Byard",
+      "email": "stepheniscool@aol.com",
+      "password": "byard",
+      "id": 5
     }
   ],
   "posts": [

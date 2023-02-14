@@ -67,6 +67,31 @@ export const getUsers = () => {
     return applicationState.users.map(user => ({...user}))
 }
 
+
+
+
+
+export const saveNewUser = (userInfo) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"},
+        body: JSON.stringify(userInfo)
+    }
+    return fetch(`${apiURL}/users`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            document.dispatchEvent(new CustomEvent ("stateChanged"))
+        })
+       
+}
+
+
+
+
+
+
+
 export const fetchPosts = () => {
     return fetch(`${apiURL}/posts`)
         .then(response => response.json())
@@ -204,3 +229,5 @@ export const changeReadStatus = (msgId, newMsg) => {
     })
 
 }
+
+
