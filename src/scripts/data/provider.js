@@ -13,6 +13,7 @@ const applicationState = {
     },
     posts: [],
     userFavorites: [],
+    messages: [],
     transient: {}
 }
 
@@ -143,5 +144,39 @@ export const deleteUserFavorite = (id) => {
                 document.dispatchEvent(new CustomEvent("stateChanged"))
             }
         )
+}
+
+
+
+
+
+
+export const fetchMessages = () => {
+    return fetch(`${apiURL}/messages`)
+        .then(response => response.json())
+        .then(
+            (data) => {
+                applicationState.messages = data
+            }
+        )
+}
+
+export const getMessages = () => {
+    return applicationState.messages.map(msg => ({...msg}))
+}
+
+export const sendMessage = (msg) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"},
+        body: JSON.stringify(msg)
+    }
+    return fetch(`${apiURL}/messages`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            document.dispatchEvent(new CustomEvent ("stateChanged"))
+        })
+       
 }
 
